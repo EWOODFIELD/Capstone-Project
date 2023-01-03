@@ -1,0 +1,100 @@
+[
+    {
+      "ID": 1,
+      "Event": "North America 2021 Finals",
+      "Players": 500,
+      "Rounds": 9,
+      "Top Cut": "Top 32 Cut"
+    },
+    {
+      "ID": 2,
+      "Event": "Core TCG San Diego 2022 Regionals",
+      "Players": 149,
+      "Rounds": 7,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 3,
+      "Event": "PPG TooManyGames 2022 Con",
+      "Players": 110,
+      "Rounds": 7,
+      "Top Cut": "Top 4 Cut"
+    },
+    {
+      "ID": 4,
+      "Event": "Core TCG San Diego May 2022 Regional",
+      "Players": 212,
+      "Rounds": 8,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 5,
+      "Event": "PPG Kansas City 2022 Regional",
+      "Players": 40,
+      "Rounds": 4,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 6,
+      "Event": "Gen Con 2022 Regional",
+      "Players": 60,
+      "Rounds": 6,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 7,
+      "Event": "PPG Otakon 2022 Regional",
+      "Players": 130,
+      "Rounds": 10,
+      "Top Cut": "Top 8 Cut"
+    },
+    {
+      "ID": 8,
+      "Event": "Core TCG November 2022 Zenkai Cup",
+      "Players": 80,
+      "Rounds": 6,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 9,
+      "Event": "Carta Magica Unison Warrior May 2022 Cup",
+      "Players": 196,
+      "Rounds": 7,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 10,
+      "Event": "PPG Origins 2022 Regional",
+      "Players": 56,
+      "Rounds": 8,
+      "Top Cut": "Top 4 Cut"
+    },
+    {
+      "ID": 11,
+      "Event": "PPG Webcam August 2022 Regional",
+      "Players": 95,
+      "Rounds": 6,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 12,
+      "Event": "PlayTCG Akon Regional",
+      "Players": 128,
+      "Rounds": 10,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 13,
+      "Event": "TAK Games Oceania 2022 Finals",
+      "Players": 117,
+      "Rounds": 7,
+      "Top Cut": "Top 16 Cut"
+    },
+    {
+      "ID": 14,
+      "Event": "Game Academia Asia Online 2022 Finals",
+      "Players": 38,
+      "Rounds": 4,
+      "Top Cut": "Top 8 Cut"
+    }
+  ]

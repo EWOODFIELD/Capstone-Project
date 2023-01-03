@@ -1,0 +1,222 @@
+{
+    "swagger": "2.0",
+    "info": {
+    "version": "1.0.0",
+    "title": "Mini Project 3 CRUD",
+    "description": "My Pokemon API Project",
+    "license": {
+    "name": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+    }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+    {
+    "name": "Pokemon",
+    "description": "My Pokemon API Project"
+    }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/calculator/add": {
+        "get": {
+        "tags": [
+        "Addition Service"
+        ],
+        "summary": "Add 2 numbers",
+        "parameters": [
+        {
+        "name": "num1",
+        "in": "query",
+        "description": "the First Number"
+        },
+        {
+        "name": "num2",
+        "in": "query",
+        "description": "the Second number"
+        }
+        ],
+        "responses": {
+        "200": {
+        "description": "This service allows you to add two numbers together"
+        }
+        }
+        }
+        },
+        "/pokemon/": {
+            "get": {
+            "tags": [
+            "Search Service"
+            ],
+            "summary": "Search All Pokemon Records",
+            "responses": {
+            "200": {
+            "description": "This service allows you to pull up all pokemon records"
+                        }
+                    }
+                }
+            },
+        "/pokemon/findn/{name}": {
+            "get": {
+            "tags": [
+            "Search Service"
+            ],
+            "summary": "Search individual pokemon by name",
+            "parameters": [
+            {
+                "in": "path",
+                "name": "name",
+                "description": "this is the name path parameter"
+            }
+            ],
+            "responses": {
+            "200": {
+            "description": "This service allows you to search for an individual pokemon by its name"
+                            }
+                        }
+                    }
+                },
+            "/pokemon/search/{id}": {
+                "get": {
+                "tags": [
+                "Search Service"
+                ],
+                "summary": "Search individual pokemon by ID",
+                "parameters": [
+                {
+                "name": "id",
+                "in": "path",
+                "description": "this is the ID path parameter"
+                }
+                ],
+                "responses": {
+                "200": {
+                "description": "This service allows you to search for an individual pokemon by its ID"
+                                }
+                            }
+                        }
+                    },
+            "/pokemon/deleten/{name}": {
+                "delete": {
+                "tags": [
+                "Deletion Service"
+                ],
+                "summary": "Delete individual pokemon by name",
+                "parameters": [
+                {
+                "name": "name",
+                "in": "path",
+                "description": "this is the name path parameter"
+                }
+                ],
+                "responses": {
+                "200": {
+                "description": "This service allows you to delete an individual pokemon by its name"
+                                }
+                            }
+                        }
+                    },
+            "/pokemon/delete/{id}": {
+                "delete": {
+                "tags": [
+                "Deletion Service"
+                ],
+                "summary": "Delete individual pokemon by ID",
+                "parameters": [
+                {
+                "name": "id",
+                "in": "path",
+                "description": "this is the ID path parameter"
+                }
+                ],
+                "responses": {
+                "200": {
+                "description": "This service allows you to delete an individual pokemon by its ID"
+                                }
+                            }
+                        }
+                    },
+            "/pokemon/create": {
+                "post": {
+                "tags": [
+                "Creation Service"
+                ],
+                "summary": "Create an individual pokemon",
+                "parameters": [
+                {
+                "in": "body",
+                "name": "pokemonBody",
+                "description": "pokemon body with details to create",
+                "schema" : {
+                    "type": "object",
+                    "required": [
+                        "pokeId",
+                        "pokeName",
+                        "pokeURL"
+                    ],
+                    "properties" : {
+                        "pokeId": {
+                            "type": "number"
+                        },
+                        "pokeName" : {
+                            "type": "string"
+                        },
+                        "pokeURL" : {
+                            "type": "string"
+                        }
+                    }
+                }}],
+                "responses": {
+                "200": {
+                "description": "This service allows you to create an pokemon object via body"
+                                }
+                            }
+                        }
+                    },
+            "/pokemon/update/{id}": {
+                "put": {
+                    "tags": [
+                    "Update Service"
+                    ],
+                    "summary": "Find and update an individual pokemon using its ID",
+                    "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "this is the ID path parameter"
+                    },
+                    {
+                    "in": "body",
+                    "name": "pokemonBody",
+                    "description": "pokemon body with details to create",
+                    "schema" : {
+                        "type": "object",
+                        "required": [
+                            "pokeName",
+                            "pokeURL",
+                            "pokeId"
+                        ],
+                        "properties" : {
+                            "pokeId": {
+                                "type": "number"
+                            },
+                            "pokeName" : {
+                                "type": "string"
+                            },
+                            "pokeURL" : {
+                                "type": "string"
+                            }
+                        }
+                    }}],
+                    "responses": {
+                    "200": {
+                    "description": "This service allows you to update an individual pokemon record via its ID"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
