@@ -8,6 +8,11 @@ Project Purpose:
   - The purpose of this project is to provide a centralised historical index of competitive events and related information for players, collectors, 
     and e-commerce tcg businesses to review and interact with.
 
+Complete Project Outline:
+  - Refer Capstone Project Overview Document (docx.) -- submitted to course instructors.
+    - Architecture Diagrams: https://lucid.app/documents#/documents?folder_id=home
+    - Project Timeline (Gantt Chart): https://app.smartsheet.com/sheets/G37jwR6Qm59cQFF9Px692Cg5CC8WFMPP526MC3h1?view=gantt
+
 Back End Environment:
   - Project back end is running on NodeJS, and communicating with MySQL to provide information for project front end (see project architecture diagram PD 1.0 
     outlined in Capstone Project Overview Document).
