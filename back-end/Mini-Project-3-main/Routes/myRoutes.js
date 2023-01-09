@@ -11,6 +11,7 @@ var myController = require('../Controllers/myController')
 
 //Event Details Table
 
+
 //[APF 1.10 (Route)] Display All Event Details Table Records
 router.get('/', function (req,res) { // tested: working ,  http://localhost:8080/dbscompdex/
     console.log('showing object')
@@ -44,8 +45,14 @@ router.post('/createdetails', (req,res) => {
 })
 
 //[APF 1.70 (Route)] Update Event Details by ID
-router.put('/updatedetails/:ID', (req, res) => { //Add additional update routes for other parameters
+router.put('/updatedetails/:ID', (req, res) => { //Note: Will not work through Postman without adding :id at end of route path
+    console.log("sub form")
     myController.updateEventDetail(req,res)
+})
+
+//[APF 1.71 (Route)] Update Event Details by Competition Name
+router.put('/updatendetails/', (req, res) => { //Note: Will not work through Postman without adding :name at end of route path
+    myController.updateEventDetailName(req,res)
 })
 
 
@@ -99,6 +106,10 @@ router.put('/updateplacing/:ID', (req, res) => {
     myController.updateEventPlacing(req,res)
 })
 
+
+// Event Summaries Table 
+
+
 //[APF 2.70 (Route)] Display All Event Summaries Table Records
 router.get('/summaries', function (req,res) {
     console.log('showing object')
@@ -131,15 +142,33 @@ router.post('/createsummary', (req,res) => {
     myController.createEventSummary(req,res)
 })
 
-//[APF 3.30 (Route)] Update Event Placing by ID
+//[APF 3.30 (Route)] Update Event Summary by ID
 router.put('/updatesummary/:ID', (req, res) => { 
     myController.updateEventSummary(req,res)
 })
 
-//[APF 2.70 (Route)] Display All Event Summaries Table Records
+
+// Leader Information Table
+
+
+//[APF 3.40 (Route)] Display All Leader Table Records
 router.get('/leaderinfo', function (req,res) {
     console.log('showing object')
     myController.findLeaders(req,res)
+    console.log('finished getting object data')
+})
+
+//[APF 3.50 (Route)] Display Leader via ID
+router.post('/leaderinfo/:ID', function (req,res) {
+    console.log('showing object')
+    myController.findLeader(req,res)
+    console.log('finished getting object data')
+})
+
+//[APF 3.50 (Route)] Display Leader via Name
+router.post('/search/leaderinfo', function (req,res) {
+    console.log('showing object')
+    myController.findLeaderByName(req,res)
     console.log('finished getting object data')
 })
 

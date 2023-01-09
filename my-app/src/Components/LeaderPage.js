@@ -1,7 +1,7 @@
+//[AppComp 1.06]
+
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,16 +9,15 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {useEffect, useState, useContext} from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import BasicModal from './Modal';
+import { Button } from '@mui/material';
+import PaginationRounded from './Pagination';
+import TextField from '@mui/material/TextField';
 
-
-// const cards = [response];
-
+//[APB 2.00] Define Theme for Page Content
 const theme = createTheme({
   palette: {
     primary: {
@@ -27,23 +26,68 @@ const theme = createTheme({
   },
 });
 
+//[APB 2.10] Define Leader Page Structure and Behaviour
 export default function LeaderPag() {
+  //[APB 2.11] Set States
   const [cards, setCards] = useState([]);
-
+  const [leaderImg, setLeaderImg] = useState(1);
+  // const [flip, setFlip] = useState(0);
  
-  useEffect(()=> {
+  const search = async (name) => {
+    if(name && name.length >2){
+    const database = 'http://localhost:8080/dbscompdex/search/leaderinfo'
+    const res = await axios.post(database, {
+      name
+    });
+
+    if(res && res.data && res.data.length >=0){
+      setCards(res.data);
+    }
+    } else {
+      if(name.length === 0){
+        await fetchAll();
+      }
+    }
+  }
+  
+
+  const fetchAll = async () => {
     const database = 'http://localhost:8080/dbscompdex/leaderinfo'
-      axios.get(database)
-      .then(response=> {console.log(response); setCards(response.data)})
-      .catch(error => {console.log(error)})
+    const res = await axios.get(database);
+    setCards(res.data)
+    console.log(res)
+  }
+
+
+  //[APB 2.12] Get Request to Database for All Leader Info Records
+  // response=> {console.log(response); setCards(response.data)}
+  useEffect(()=> {
+    (async () => {
+      await fetchAll()
+    })()
+    // const database = 'http://localhost:8080/dbscompdex/leaderinfo'
+      // fetchAll()
+      // .then()
+      // .catch(error => {console.log(error)})
       },[])
 
+      
+  //[APB 2.13] Dynamic Card Structure and Card Content to be Created using Table Columns
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
+        <h2> See The List of Event Topping Leaders Below </h2>
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
+          {/* <Box sx={{paddingBottom: 8}}>
+          <input type="text" onChange={e => search(e.currentTarget.value)} /> 
+          </Box> */}
+      <TextField id = "leader-search-field" input type="text" variant ="outlined" label="Leader Name" onChange={e => search(e.currentTarget.value)} />
+      <br></br> 
+      <br></br>
+          {/* <SearchIcon sx={{ mr: 2 }} /></Button> */}
+
           <Grid container spacing={4}>
             {cards.map((card, index) => (
               <Grid item key={index} xs={12} sm={6} md={4}>
@@ -56,10 +100,17 @@ export default function LeaderPag() {
                       // 16:9
                       // pt: '56.25%',
                     }}
-                    image={card.ImageURLFront}
+                    image={leaderImg ? card.ImageURLFront : card.ImageURLBack}
                     alt="random"
                     height="300"
                   />
+                  {/* {leaderImg} */}
+                  {leaderImg ? <Button 
+                  size="small" 
+                  onClick={()=>{setLeaderImg(0)}}
+                  >
+                    Flip</Button> : <Button size="small" onClick={()=>{setLeaderImg(1)}}>Flip</Button>}
+
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2" className='capitalise'>
                       {card.Leader}
@@ -67,7 +118,7 @@ export default function LeaderPag() {
                     <Typography>
                       {card.CardSet}
                     </Typography>
-                    <BasicModal />
+                    <BasicModal card={card} />
                   </CardContent>
                   
                   {/* <CardActions>
@@ -80,6 +131,8 @@ export default function LeaderPag() {
             ))}
           </Grid>
         </Container>
+        <PaginationRounded />
+        <br></br>
       </main>
       {/* Footer */}
       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
@@ -96,4 +149,4 @@ export default function LeaderPag() {
       {/* End footer */}
     </ThemeProvider>
   );
-}
+      }

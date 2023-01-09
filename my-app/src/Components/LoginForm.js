@@ -1,3 +1,5 @@
+//[AppComp 1.07]
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -16,8 +18,9 @@ import HomePage from './HomePage';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useContext, useState, useEffect } from 'react';
-import { CurrentUserContext } from '../App';
+import { CustomContext } from './Context';
 
+//[APB 2.20] Definition of Copyright Information to Display on Form
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -33,50 +36,41 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-
+//[APB 2.30] Define Login Form Structure and Behaviour
 export default function LoginForm() {
+  //[APB 2.31] Set States and Context
   const[userdetails, setUserDetails] = useState([]);
-  const{setCurrentUser} = useContext(CurrentUserContext);
+  let {setCurrentUser, currentUser} = useContext(CustomContext);
   const[LUserName, setLUserName] = useState("");
   const[LPassword, setLPassword] = useState("");
   const[ValidateMsg, setValidateMsg] = useState("");
 
-
-  //My Code
   let navigate=useNavigate();
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   navigate("/home") 
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'), //should be ${userName}?
-  //     password: data.get('password'), //should be ${userPassword}?
-  //   });
-  // };
-
-  useEffect(()=> {
+ 
+  useEffect(()=> { //fetches all users on component load, next time woudln't implement like this (security concerns)
     const database = 'http://localhost:8080/dbsuserdex/findusers'
       axios.get(database)
       .then(response=> {console.log(response); setUserDetails(response.data)})
       .catch(error => {console.log(error)})
       },[])
 
-//validate the logins
-const validateLogin=()=>
-
-{
+  //[APB 2.32] Validation of User Login and Navigation to Profile Page
+const validateLogin=()=> {
+  console.log("In validate login")
+  console.log(userdetails)
+  
   let matchedUserName=false
-    for (let u of userdetails)
-    {
-      if (LUserName===u.UserName)
+    for (let u of userdetails) //Not best practice security (confidential data should never be sent to the front end)
+    {  
+      if (LUserName===u.UserName) 
       {
         matchedUserName=true
         if (LPassword===u.UserPassword)
         {
-          console.log(u.UserName, u.UserPassword)
+          console.log("setting current user")
+          console.log(u)
           setCurrentUser(u)
-          localStorage.setItem('currentUser', JSON.stringify(u))
-          navigate('/home');
+          navigate('/profile');
         }
         else 
         {
@@ -91,7 +85,7 @@ const validateLogin=()=>
 }
 
 
-//My Code
+//[APB 2.33] Definition of Login Form Structure, Behaviour, and Theme
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" className="Login-Background" style={{backgroundColor: "rgba(50%,50%,50%, 0.7)"}}>
@@ -108,7 +102,6 @@ const validateLogin=()=>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          {/* My Code */}
             Sign in {ValidateMsg}
           </Typography>
           <Box component="form"  sx={{ mt: 1 }}>
@@ -150,7 +143,7 @@ const validateLogin=()=>
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2"> 
                   Forgot password?
                 </Link>
               </Grid>

@@ -6,7 +6,7 @@
 
 let express = require("express")
 let application = express()
-let swaggerUi = require("swagger-ui-express") //http://localhost:3000/api-docs/ , http://localhost:3000/api-docs/#/Update%20Service to call Swagger document
+let swaggerUi = require("swagger-ui-express") //http://localhost:8080/api-docs/ , http://localhost:3000/api-docs/#/Update%20Service to call Swagger document
 swaggerDocument = require('./swagger.json'); 
 application.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 

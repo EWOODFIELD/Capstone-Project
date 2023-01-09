@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-image: url("./Components/BGImage.png");
+  background-image: url("./Components/BGImage2.png");
   background-size: cover;
   height: 100vh;
   overflow: auto;
@@ -71,7 +71,40 @@
   transition: all ease-in 100ms;
 }
 
+#nav-button {
+  font-size: 18px;
+  font-family: "Ubuntu";
 
+}
 
+#my-tool {
+  margin: auto;
+}
 
+#my-nav {
+  color: white;
+  text-decoration: none;
+}
 
+#my-field {
+  background-color: black;
+  color: white;
+}
+
+#my-pages {
+  background-color: black;
+  color: white;
+}
+
+#page-stack {
+  align-items: center;
+}
+
+.leader-search-field {
+  background-color: black;
+  border-color: black;
+}
+
+#profile-image {
+  border-radius: 100%;
+}

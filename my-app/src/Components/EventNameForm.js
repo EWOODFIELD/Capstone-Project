@@ -1,13 +1,17 @@
+//[AppComp 1.03]
+
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import router from '../../../back-end/Mini-Project-3-main/Routes/myRoutes';
 import axios from 'axios';
 
-
+//[APB 1.60] Define User Event Name CRUD Submission Form Structure 
 export default function SubmissionForm() {
+
+  //[APB 1.61] Define User Event Name CRUD Submission Form Structure 
   const [cards, setCards] = useState([]);
+  const [id, setId] = useState("");
   const [competition, setCompetition] = useState("");
   const [players, setPlayers] = useState("");
   const [rounds, setRounds] = useState("");
@@ -16,15 +20,16 @@ export default function SubmissionForm() {
   const [organiserURL, setOrganiserURL] = useState("");
   const [update, setUpdate] = useState("");
   const params=useParams()
-  let id=params.eventeditbyid
-
+  
+  //[APB 1.62] Database Axios Call by ID and Dynamic Card Rendering
   useEffect(()=> {
-    const database = `http://localhost:8080/dbscompdex/searchdetails/${id}`
+    const database = `http://localhost:8080/dbscompdex/searchdetails/${competition}`
       axios.get(database)
       .then(response=> {console.log(response); setCards(response.data)})
       .catch(error => {console.log(error)})
-      },[id, update])
+      },[competition, update])
     
+      //[APB 1.63] Define Update Fields as Per Database Table
       const eventUpdate = (e) => {
         e.preventDefault()
         console.log(id)
@@ -38,22 +43,24 @@ export default function SubmissionForm() {
           'OrganiserURL':organiserURL
       }
 
-      // const updatePlant={'id':plantid,'PlantIMGURL':imgUrl, 'PlantCName':CName, 
-      // 'PlantLName':LName, 'PlantVitamins': Vitamins, 'PlantMinerals': Minerals, 
-      // 'PlantPharmaProps': PharmaProps, 'PlantDesc': desc}
-
+      //[APB 1.64] Put Request to Database to Update User Specified Data Record
       console.log(updateEvent)
-      const database = `http://localhost:8080/dbscompdex/updatedetails/${id}`
+      const database = `http://localhost:8080/dbscompdex/updatedetails/${competition}`
       axios.put(database,updateEvent)
       .then(response=> {console.log(response); setUpdate(response.data)})
       .catch(error => {console.log(error)})
       }
 
 
-
+  //[APB 1.65] Form and Form Fields to Display on Webpage 
   return (
     <div>
       <form>
+      <TextField 
+      type='number' onChange={e=>setId(e.target.value)} 
+      defaultValue={cards.id} label="Event ID">
+      </TextField>
+      
       <TextField 
       type='text' onChange={e=>setCompetition(e.target.value)} 
       defaultValue={cards.Competition} label="Competition Name">
@@ -86,7 +93,7 @@ export default function SubmissionForm() {
 
       <button onClick={eventUpdate}>Update</button>
       </form>
-    </div> //forms with states to save user inputted info. 
-    //Const arrow function to call the CRUD operations (axios call via put,post, get etc.)
+    </div> 
+   
   )
 }

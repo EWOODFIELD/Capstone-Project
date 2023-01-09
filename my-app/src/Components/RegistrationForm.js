@@ -1,10 +1,10 @@
+//[AppComp 1.10]
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,11 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import HomePage from './HomePage';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { useContext } from 'react';
 
+//[APB 2.70] Define Copyright Information to Display on Registration Form
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -32,10 +30,9 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-
+//[APB 2.70] Define Registration Form Structure and Behaviour
 export default function RegistrationForm() {
-  //My Code
-  //My Code
+  //[APB 2.71] Use Navigate and Form Data to be Saved
   let navigate=useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,7 +44,7 @@ export default function RegistrationForm() {
     });
   };
 
-  //My Code
+  //[APB 2.72] Form Structure to be Returned on Webpage
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" className="Login-Background" style={{backgroundColor: "rgba(50%,50%,50%, 0.7)"}}>
@@ -64,7 +61,6 @@ export default function RegistrationForm() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          {/* My Code */}
             Register
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

@@ -2,218 +2,330 @@
     "swagger": "2.0",
     "info": {
     "version": "1.0.0",
-    "title": "Mini Project 3 CRUD",
-    "description": "My Pokemon API Project",
+    "title": "Capstone Project Functionality Testing Document",
+    "description": "TCG Competitive Index Application",
     "license": {
-    "name": "MIT",
+    "name": "DBSCompDex",
     "url": "https://opensource.org/licenses/MIT"
     }
     },
-    "host": "localhost:3000",
+    "host": "localhost:8080",
     "basePath": "/",
     "tags": [
     {
-    "name": "Pokemon",
-    "description": "My Pokemon API Project"
+    "name": "DBSCompDex",
+    "description": "My TCG Index Project"
     }
     ],
     "schemes": ["http"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
-        "/calculator/add": {
-        "get": {
-        "tags": [
-        "Addition Service"
-        ],
-        "summary": "Add 2 numbers",
-        "parameters": [
-        {
-        "name": "num1",
-        "in": "query",
-        "description": "the First Number"
-        },
-        {
-        "name": "num2",
-        "in": "query",
-        "description": "the Second number"
-        }
-        ],
-        "responses": {
-        "200": {
-        "description": "This service allows you to add two numbers together"
-        }
-        }
-        }
-        },
-        "/pokemon/": {
+        "/dbscompdex/": {
             "get": {
             "tags": [
-            "Search Service"
+            "Event Details Service"
             ],
-            "summary": "Search All Pokemon Records",
+            "summary": "Search All Event Details Records",
             "responses": {
             "200": {
-            "description": "This service allows you to pull up all pokemon records"
+            "description": "This service allows you to review all Event Details Records"
                         }
                     }
                 }
             },
-        "/pokemon/findn/{name}": {
+        "/dbscompdex/finddetails/{name}": {
             "get": {
             "tags": [
-            "Search Service"
+            "Event Details Service"
             ],
-            "summary": "Search individual pokemon by name",
+            "summary": "Search Individual Event Details by Event Name",
             "parameters": [
             {
                 "in": "path",
                 "name": "name",
-                "description": "this is the name path parameter"
+                "description": "This is the Event Name Path Parameter"
             }
             ],
             "responses": {
             "200": {
-            "description": "This service allows you to search for an individual pokemon by its name"
+            "description": "This Service Allows you to Search for an Individual Event by Name"
                             }
                         }
                     }
                 },
-            "/pokemon/search/{id}": {
+            "/dbscompdex/searchdetails/{id}": {
                 "get": {
                 "tags": [
-                "Search Service"
+                "Event Details Service"
                 ],
-                "summary": "Search individual pokemon by ID",
+                "summary": "Search Individual Event Details by ID",
                 "parameters": [
                 {
                 "name": "id",
                 "in": "path",
-                "description": "this is the ID path parameter"
+                "description": "This is the ID Path Parameter"
                 }
                 ],
                 "responses": {
                 "200": {
-                "description": "This service allows you to search for an individual pokemon by its ID"
+                "description": "This Service Allows you to search for Individual Event Details via ID"
                                 }
                             }
                         }
                     },
-            "/pokemon/deleten/{name}": {
+            "/dbscompdex/deletedetails/{name}": {
                 "delete": {
                 "tags": [
-                "Deletion Service"
+                "Event Details Service"
                 ],
-                "summary": "Delete individual pokemon by name",
+                "summary": "Delete Individual Event Details by Name",
                 "parameters": [
                 {
                 "name": "name",
                 "in": "path",
-                "description": "this is the name path parameter"
+                "description": "This is the Event Details Name Path Parameter"
                 }
                 ],
                 "responses": {
                 "200": {
-                "description": "This service allows you to delete an individual pokemon by its name"
+                "description": "This Service Allows you to Delete an Individual Event by Name"
                                 }
                             }
                         }
                     },
-            "/pokemon/delete/{id}": {
+            "/dbscompdex/deletedetail/{id}": {
                 "delete": {
                 "tags": [
-                "Deletion Service"
+                "Event Details Service"
                 ],
-                "summary": "Delete individual pokemon by ID",
+                "summary": "Delete Individual Event Details by ID",
                 "parameters": [
                 {
                 "name": "id",
                 "in": "path",
-                "description": "this is the ID path parameter"
+                "description": "This is the Event Details ID Path Parameter"
                 }
                 ],
                 "responses": {
                 "200": {
-                "description": "This service allows you to delete an individual pokemon by its ID"
+                "description": "This Service Allows you to Delete an Individual Event by ID"
                                 }
                             }
                         }
                     },
-            "/pokemon/create": {
+            "/dbscompdex/createdetails": {
                 "post": {
                 "tags": [
-                "Creation Service"
+                "Event Details Service"
                 ],
-                "summary": "Create an individual pokemon",
+                "summary": "Create an Individual Event",
                 "parameters": [
                 {
                 "in": "body",
-                "name": "pokemonBody",
-                "description": "pokemon body with details to create",
+                "name": "Event Detail Body",
+                "description": "JSON Body with Details to Create",
                 "schema" : {
                     "type": "object",
                     "required": [
-                        "pokeId",
-                        "pokeName",
-                        "pokeURL"
+                        "ID",
+                        "Competition",
+                        "Players",
+                        "TopCut",
+                        "Organiser",
+                        "OrganiserURL"
                     ],
                     "properties" : {
-                        "pokeId": {
+                        "ID": {
                             "type": "number"
                         },
-                        "pokeName" : {
+                        "Competition" : {
                             "type": "string"
                         },
-                        "pokeURL" : {
+                        "Players" : {
+                            "type": "number"
+                        },
+                        "Rounds" : {
+                            "type": "number"
+                        },
+                        "Organiser" : {
+                            "type": "string"
+                        },
+                        "OrganiserURL" : {
                             "type": "string"
                         }
                     }
                 }}],
                 "responses": {
                 "200": {
-                "description": "This service allows you to create an pokemon object via body"
+                "description": "This Service Allows you to Create an Event via JSON Data Body"
                                 }
                             }
                         }
                     },
-            "/pokemon/update/{id}": {
+            "/dbscompdex/updatedetails/": {
                 "put": {
                     "tags": [
-                    "Update Service"
+                    "Event Details Service"
                     ],
-                    "summary": "Find and update an individual pokemon using its ID",
+                    "summary": "Find and Update an Individual Event via ID",
                     "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "this is the ID path parameter"
+                        "description": "this is the Event Details ID Path Parameter"
                     },
                     {
                     "in": "body",
-                    "name": "pokemonBody",
-                    "description": "pokemon body with details to create",
+                    "name": "Event Detail Body",
+                    "description": "Event Detail Body with Details to Create",
                     "schema" : {
                         "type": "object",
                         "required": [
-                            "pokeName",
-                            "pokeURL",
-                            "pokeId"
+                            "ID",
+                            "Competition",
+                            "Players",
+                            "TopCut",
+                            "Organiser",
+                            "OrganiserURL"
                         ],
                         "properties" : {
-                            "pokeId": {
+                            "ID": {
                                 "type": "number"
                             },
-                            "pokeName" : {
+                            "Competition" : {
                                 "type": "string"
                             },
-                            "pokeURL" : {
+                            "Players" : {
+                                "type": "number"
+                            },
+                            "Rounds" : {
+                                "type": "number"
+                            },
+                            "Organiser" : {
+                                "type": "string"
+                            },
+                            "OrganiserURL" : {
                                 "type": "string"
                             }
                         }
                     }}],
                     "responses": {
                     "200": {
-                    "description": "This service allows you to update an individual pokemon record via its ID"
+                    "description": "This Service Allows you to Update an Individual Event Record via ID"
+                                }
+                            }
+                        }
+                    },
+            "/dbscompdex/updatenetails/": {
+                "put": {
+                    "tags": [
+                    "Event Details Service"
+                    ],
+                    "summary": "Find and Update an Individual Event via Name",
+                    "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "this is the Event Details Name Path Parameter"
+                    },
+                    {
+                    "in": "body",
+                    "name": "Event Detail Body",
+                    "description": "Event Detail Body with Details to Create",
+                    "schema" : {
+                        "type": "object",
+                        "required": [
+                            "ID",
+                            "Competition",
+                            "Players",
+                            "TopCut",
+                            "Organiser",
+                            "OrganiserURL"
+                        ],
+                        "properties" : {
+                            "ID": {
+                                "type": "number"
+                            },
+                            "Competition" : {
+                                "type": "string"
+                            },
+                            "Players" : {
+                                "type": "number"
+                            },
+                            "Rounds" : {
+                                "type": "number"
+                            },
+                            "Organiser" : {
+                                "type": "string"
+                            },
+                            "OrganiserURL" : {
+                                "type": "string"
+                            }
+                        }
+                    }}],
+                    "responses": {
+                    "200": {
+                    "description": "This Service Allows you to Update an Individual Event Record via Name"
+                                }
+                            }
+                        }
+                    },
+
+
+
+
+
+
+            "/dbscompdex/leaderinfo/": {
+                "get": {
+                    "tags": [
+                        "Leader Information Service"
+                        ],
+                        "summary": "Search All Leader Information Records",
+                        "responses": {
+                        "200": {
+                        "description": "This service allows you to review all Leader Information Records"
+                                }
+                            }
+                        }
+                    },
+            "/dbscompdex/leaderinfo/{id}": {
+                "get": {
+                "tags": [
+                "Leader Information Service"
+                ],
+                "summary": "Search Individual Leader Information by ID",
+                "parameters": [
+                {
+                "name": "id",
+                "in": "path",
+                "description": "This is the ID Path Parameter"
+                }
+                ],
+                "responses": {
+                "200": {
+                "description": "This Service Allows you to search for Individual Leader Information via ID"
+                                }
+                            }
+                        }
+                    },
+            "/dbscompdex/search/leaderinfo/": {
+                "post": {
+                "tags": [
+                "Leader Information Service"
+                ],
+                "summary": "Search Individual Leader Information by Name",
+                "parameters": [
+                {
+                "name": "name",
+                "in": "path",
+                "description": "This is the Name Search Parameter"
+                }
+                ],
+                "responses": {
+                "200": {
+                "description": "This Service Allows you to search for Individual Leader Information via Name"
                                 }
                             }
                         }

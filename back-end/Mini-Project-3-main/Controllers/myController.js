@@ -47,6 +47,15 @@ const updateEventDetail = async (req,res) =>{
     res.send(data)
 }
 
+//[APF 1.71 (Controller)] Update Event in Event Details Table
+const updateEventDetailName = async (req,res) =>{
+    console.log("test 1.71 controller")
+    let data = await myDBServices.dbUpdateEventDetailByName(req,res)
+    res.send(data)
+}
+
+
+
 // Event Placings Table
 
 //[APF 1.80 (Controller)] Find All Records from Event Placings Table
@@ -153,12 +162,23 @@ const findLeaders = async (req,res) =>{
     res.send(data)
 }
 
+//[APF 2.70 (Controller)] Find All Records from Event Summaries Table
+const findLeader = async (req,res) =>{
+    let data = await myDBServices.dbGetLeader(req,res)
+    res.send(data)
+}
+
+//[APF 2.70 (Controller)] Find All Records from Event Summaries Table
+const findLeaderByName = async (req,res) =>{
+    let data = await myDBServices.dbSearchLeaderByName(req,res)
+    res.send(data)
+}
 
 
 module.exports={
 //Event Details Exports
     findEventByName, findEventById, deleteEventByName, deleteEventById, 
-    createEventDetail, updateEventDetail, findEventDetails, 
+    createEventDetail, updateEventDetail, findEventDetails, updateEventDetailName,
 //Event Placing Exports
     findEventPlacings, findDeckPlacingByName, findPlayerPlacingByName,
     findEventPlacingById, findPlacingByNameAndCompetition, deletePlacingByNameAndCompetition, 
@@ -167,6 +187,6 @@ module.exports={
     findEventSummaries, findEventSummaryByName, findDeckSummaryByName,
     findEventSummaryById, deleteSummaryById, createEventSummary, updateEventSummary,
 
-    findLeaders
+    findLeaders, findLeader, findLeaderByName
 }
 

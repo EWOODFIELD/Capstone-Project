@@ -90,20 +90,53 @@ let dbRegistration = async (req,res) => {
          })
 }
 
-//[APF 1.21 (Service}] Filter Users Table for User by Name
-// let dbGetUserByName = async (req,res) => {
-//     let UserName=req.params.UserName
-//     return new Promise((resolve, reject) =>{
-//         let sqlQuery= `SELECT UserName FROM UserDetails WHERE UserName like "%${UserName}%"`;
-//         sql.query(sqlQuery, (err,result, field) => {
-//             if(err) return reject(err);
-//             resolve(Object.values(result));
-//             console.log(result)
-//         })
+// [APF 1.21 (Service}] Filter Users Table for User by Name
+let dbGetUserByName = async (req,res) => {
+    let UserName=req.params.UserName
+    return new Promise((resolve, reject) =>{
+        let sqlQuery= `SELECT UserName FROM UserDetails WHERE UserName like "%${UserName}%"`;
+        sql.query(sqlQuery, (err,result, field) => {
+            if(err) return reject(err);
+            resolve(Object.values(result));
+            console.log(result)
+        })
         
-//         console.log('testing competition name fetch function')
-//     })  
-// }
+        console.log('testing competition name fetch function')
+    })  
+}
+
+// [APF 1.22 (Service}] Filter Users Table for User by ID
+let dbGetUserById = async (req,res) => {
+    let User=req.params.ID
+    return new Promise((resolve, reject) =>{
+        let sqlQuery= `SELECT * FROM userdetails WHERE ID= ${User}`;
+        sql.query(sqlQuery, (err,result, field) => {
+            if(err) return reject(err);
+            resolve(Object.values(result));
+            console.log(result)
+        })
+        
+        console.log('testing competition name fetch function')
+    })  
+}
+
+//[APF 1.70 (Service)] Update Event Details By ID
+let dbUpdateUserById = async (req, res) => {
+    let id=req.params.ID
+    let newUserName=req.body.UserName
+    let newUserPassword=req.body.UserPassword
+    
+    return new Promise((resolve, reject) =>{
+        let sqlQuery= `UPDATE userdetails SET UserName = "${newUserName}", UserPassword = "${newUserPassword}" WHERE ID = ${id}`;  
+        sql.query(sqlQuery, (err,result, field) => {                                                                                      
+            if(err) return reject(err);
+            resolve(Object.values(result))
+            console.log(newUserName, newUserPassword); //Fix message later
+        })
+    })
+}
+
+
 
 // //[APF 1.30 (Service)] Filter Event Details table by Event ID
 // let dbGetEventDetailById = async (req,res) => { //Tested and working
@@ -437,7 +470,9 @@ let dbRegistration = async (req,res) => {
 
 module.exports = {
 //User Exports
-// dbGetUserByName,
+dbGetUserByName,
+dbGetUserById,
+dbUpdateUserById,
 dbLogin,
 dbRegistration,
 dbGetUsers

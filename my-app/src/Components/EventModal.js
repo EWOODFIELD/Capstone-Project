@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { CardMedia } from '@mui/material';
 
 
 //[APB 2.40] Define Modal CSS Styling
@@ -22,7 +21,7 @@ const style = {
 };
 
 //[APB 2.50] Definition of Static Modal
-export default function BasicModal({ card }) {
+export default function BasicModal({ event }) {
 
   //[APB 2.51] Set States 
   const [open, setOpen] = React.useState(false);
@@ -43,23 +42,11 @@ export default function BasicModal({ card }) {
         
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {/* {card.Players} */} 
-            Name: 
-            {card.Leader}<br></br>
-            Total Event Tops: 
-             {card.TotalTops}<br></br>
-            Trait: 
-             {card.Trait}<br></br>
-            Character Name: 
-             {card.CharacterName}<br></br>
-            Set: 
-             {card.CardSet}<br></br>
-            Era: 
-             {card.Era}<br></br>
-            {/* Effect Front: 
-            {card.CardDescriptionFront}<br></br>
-            Effect Back: 
-            {card.CardDescriptionBack}<br></br> */}
+            {/* {card.Players} */} Hello {event.Competition}
+            
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography>
         </Box>
       </Modal>

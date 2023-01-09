@@ -23,6 +23,16 @@ router.get('/finduser/:UserName', (req,res) => {
     userController.findUserByName(req,res)
 })
 
+//[APF 1.22 (Route)] Search User Records by ID
+router.get('/finduserbyid/:ID', (req,res) => { 
+    userController.findUserById(req,res)
+})
+
+//[APF 1.23 (Route)] Update User via ID
+router.put('/updateuserbyid/:ID', (req,res) => { 
+    userController.updateUserById(req,res)
+})
+
 //[APF 1.21 (Route)] Search User Records by Name
 router.get('/findusers', (req,res) => { 
     userController.findUsers(req,res)
@@ -37,6 +47,8 @@ router.get('/login', (req,res) => {
 router.post('/register', (req,res) => {
     userController.registration(req,res)
 })
+
+
 
 
 //[APF 1.30 (Route)] Search Event Details by ID

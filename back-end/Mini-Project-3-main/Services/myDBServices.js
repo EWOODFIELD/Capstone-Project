@@ -128,14 +128,36 @@ let dbUpdateEventDetailById = async (req, res) => { //Tested and working
     let newOrganiser = req.body.Organiser
     let newOrganiserURL = req.body.OrganiserURL
     return new Promise((resolve, reject) =>{
-        let sqlQuery= `UPDATE eventdetails SET Competition = "${newName}", Players = ${newPlayers}, Rounds = ${newRounds}, TopCut = "${newTopCut}", Organiser = "${newOrganiser}", OrganiserURL = "${newOrganiserURL}" WHERE ID = ${ID}`; //ensure SQL command parameters match variable names defined in function
-        sql.query(sqlQuery, (err,result, field) => {                                                                                        //NB: SQL database table column (pokeId) is configured as an integer, ${id}/${pokeId} should not have string quotation marks
+        let sqlQuery= `UPDATE eventdetails SET Competition = "${newName}", Players = ${newPlayers}, Rounds = ${newRounds}, TopCut = "${newTopCut}", Organiser = "${newOrganiser}", OrganiserURL = "${newOrganiserURL}" WHERE ID = ${ID}`;
+        sql.query(sqlQuery, (err,result, field) => {                                                                                        
             if(err) return reject(err);
             resolve(Object.values(result))
             console.log(`successfully updated Competition ${ID}'s information`); //Fix message later
         })
     })
 }
+
+//[APF 1.71 (Service)] Update Event Details By Name
+let dbUpdateEventDetailByName = async (req, res) => {
+    console.log("test 1.71")
+    let competition=req.params.name
+    let newName=req.body.Competition
+    let newPlayers=req.body.Players
+    let newRounds=req.body.Rounds
+    let newTopCut=req.body.TopCut
+    let newOrganiser = req.body.Organiser
+    let newOrganiserURL = req.body.OrganiserURL
+    return new Promise((resolve, reject) => {
+        let sqlQuery= `UPDATE eventdetails SET Competition = "${newName}", Players = ${newPlayers}, Rounds = ${newRounds}, TopCut = "${newTopCut}", Organiser = "${newOrganiser}", OrganiserURL = "${newOrganiserURL}" WHERE Competition LIKE "%${competition}%"`;
+        sql.query(sqlQuery, (err,result, field) => {                                                                                       
+            if(err) return reject(err);
+            resolve(Object.values(result))
+            console.log(competition); //Fix message later
+        })
+    })
+}
+
+
 
 
 // EVENT PLACINGS BEGINS HERE
@@ -393,12 +415,36 @@ let dbGetLeaders = async (req,res) => {
         console.log('testing leader fetch function')
 })}
 
+//[APF 3.40 (Service)] Show All Records from table "Leader Information"
+let dbGetLeader = async (req,res) => {
+    let id = req.body.ID;
+    return new Promise((resolve, reject) => {
+        let sqlQuery= `SELECT * FROM leaderinformation where ID=${id}`;
+        sql.query(sqlQuery, (err,result, field) => {
+            if(err) return reject(err);
+            resolve(Object.values(result));
+            JSON.stringify(result)
+        })
+        console.log('testing leader fetch function')
+})}
 
+//[APF 3.40 (Service)] Show All Records from table "Leader Information"
+let dbSearchLeaderByName = async (req,res) => {
+    let leaderName = req.body.name;
+    return new Promise((resolve, reject) => {
+        let sqlQuery= `SELECT * FROM leaderinformation where Leader like '%${leaderName}%'`;
+        sql.query(sqlQuery, (err,result, field) => {
+            if(err) return reject(err);
+            resolve(Object.values(result));
+            JSON.stringify(result)
+        })
+        console.log('testing leader fetch function')
+})}
 
 module.exports = {
 //Event Details Exports
     dbGetEventDetailByName, dbGetEventDetailById, dbDeleteEventDetailbyName, dbDeleteEventDetailById, 
-    dbCreateEventDetail, dbUpdateEventDetailById, dbGetEventDetails, 
+    dbCreateEventDetail, dbUpdateEventDetailById, dbGetEventDetails, dbUpdateEventDetailByName,
 //Event Placings Exports
     dbGetEventPlacings, dbGetEventPlacingByName, dbGetPlayerPlacingByName, dbGetPlayerPlacingByNameAndCompetition,
     dbGetEventPlacingById, dbDeleteEventPlacingbyNameAndEvent, dbDeleteEventPlacingById,dbCreateEventPlacing, 
@@ -407,5 +453,5 @@ module.exports = {
     dbGetEventSummaries, dbGetEventSummaryByCompetition, dbGetEventSummariesByDeck, dbGetEventSummaryById,
     dbDeleteEventSummaryById, dbCreateEventSummary, dbUpdateEventSummaryById,
 
-    dbGetLeaders
+    dbGetLeaders, dbGetLeader, dbSearchLeaderByName
     }
