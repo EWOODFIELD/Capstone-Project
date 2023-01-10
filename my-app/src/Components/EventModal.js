@@ -42,11 +42,18 @@ export default function BasicModal({ event }) {
         
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {/* {card.Players} */} Hello {event.Competition}
+            Event: 
+            {event.Competition}<br></br>
+            No. of Players: 
+            {event.Players}<br></br>
+            Top Cut:
+            {event.TopCut}<br></br>
+            Tournament Organiser:
+            {event.Organiser}<br></br>
             
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            
           </Typography>
         </Box>
       </Modal>

@@ -1,3 +1,6 @@
+//Application Structure, Functionality List, Locations, and Breakdowns
+//Note: Complete if enough time left
+
 //[AppComp 1.0]
     //Name: Appbar.js
     //Purpose: Render Navigation Bar for Application

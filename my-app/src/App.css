@@ -1,50 +1,46 @@
+/* Class Selectors */
+
 .App {
-  text-align: center;
   background-image: url("./Components/BGImage2.png");
   background-size: cover;
   height: 100vh;
   overflow: auto;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  text-align: center;
 }
 
 .App-header {
+  align-items: center;
   background-color: #282c34;
-  min-height: 100vh;
+  color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: center;
+  min-height: 100vh;  
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.NavBar {
-  background-color: "black";
+.card h2 {
+  transition: all ease-in 100ms;
 }
 
+.leader-search-field {
+  background-color: black;
+  border-color: black;
+}
+
+.my-image {
+  object-fit: contain;
+}
 
 .my-result {
   background-color: rgba(0, 0, 0, 0.95);
@@ -55,10 +51,6 @@
   transition: all ease 200ms;
 }
 
-.my-image {
-  object-fit: contain;
-}
-
 .my-result:hover {
   transform: scale(1.03);
   box-shadow: 0 13px 40px -5px 
@@ -67,10 +59,11 @@
   hsla(0, 0%, 0%, 0.02);
 }
 
-.card h2 {
-  transition: all ease-in 100ms;
+.NavBar {
+  background-color: "black";
 }
 
+/* ID Selectors */
 #nav-button {
   font-size: 18px;
   font-family: "Ubuntu";
@@ -98,11 +91,6 @@
 
 #page-stack {
   align-items: center;
-}
-
-.leader-search-field {
-  background-color: black;
-  border-color: black;
 }
 
 #profile-image {

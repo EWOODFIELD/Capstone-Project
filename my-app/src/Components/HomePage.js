@@ -1,10 +1,6 @@
 //[AppComp 1.05]
 
 import React from 'react'
-import MenuAppBar from './Appbar2'
-import DirectionStack from './PageLinks'
-import logo from './CollectaConKansas.jpg'
-
 
 export default function HomePage() {
   return (

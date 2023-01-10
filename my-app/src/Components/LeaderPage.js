@@ -33,6 +33,7 @@ export default function LeaderPag() {
   const [leaderImg, setLeaderImg] = useState(1);
   // const [flip, setFlip] = useState(0);
  
+  //Handle Searching for Leaders by Name in Real Time on the Browser Page
   const search = async (name) => {
     if(name && name.length >2){
     const database = 'http://localhost:8080/dbscompdex/search/leaderinfo'
@@ -50,7 +51,7 @@ export default function LeaderPag() {
     }
   }
   
-
+  //Axios Call to get all Leader Information Records and Set Cards
   const fetchAll = async () => {
     const database = 'http://localhost:8080/dbscompdex/leaderinfo'
     const res = await axios.get(database);
@@ -60,16 +61,10 @@ export default function LeaderPag() {
 
 
   //[APB 2.12] Get Request to Database for All Leader Info Records
-  // response=> {console.log(response); setCards(response.data)}
   useEffect(()=> {
     (async () => {
       await fetchAll()
-    })()
-    // const database = 'http://localhost:8080/dbscompdex/leaderinfo'
-      // fetchAll()
-      // .then()
-      // .catch(error => {console.log(error)})
-      },[])
+    })()},[])
 
       
   //[APB 2.13] Dynamic Card Structure and Card Content to be Created using Table Columns
@@ -79,14 +74,9 @@ export default function LeaderPag() {
       <main>
         <h2> See The List of Event Topping Leaders Below </h2>
         <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
-          {/* <Box sx={{paddingBottom: 8}}>
-          <input type="text" onChange={e => search(e.currentTarget.value)} /> 
-          </Box> */}
       <TextField id = "leader-search-field" input type="text" variant ="outlined" label="Leader Name" onChange={e => search(e.currentTarget.value)} />
       <br></br> 
       <br></br>
-          {/* <SearchIcon sx={{ mr: 2 }} /></Button> */}
 
           <Grid container spacing={4}>
             {cards.map((card, index) => (
@@ -96,10 +86,7 @@ export default function LeaderPag() {
                 >
                   <CardMedia class="my-image"
                     component="img"
-                    sx={{
-                      // 16:9
-                      // pt: '56.25%',
-                    }}
+                    sx={{}}
                     image={leaderImg ? card.ImageURLFront : card.ImageURLBack}
                     alt="random"
                     height="300"
@@ -120,12 +107,6 @@ export default function LeaderPag() {
                     </Typography>
                     <BasicModal card={card} />
                   </CardContent>
-                  
-                  {/* <CardActions>
-                    <Button size="small" href={"/plantinfo/"+(plant.id)}>View</Button>
-                    {currentUser ? <Button size="small" href={"/plantinfoedit/"+(plant.id)}>Edit</Button> : null}
-                    {currentUser ? <Button size="small" onClick={()=>{plantDelete(plant.id)}}>Delete</Button> : null}
-                  </CardActions> */}
                 </Card>
               </Grid>
             ))}

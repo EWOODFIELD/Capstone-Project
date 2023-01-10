@@ -1,7 +1,7 @@
 //myRoutes.js maps the endpoints of my application
 // no logic is used, the routes pass data to the associated controller functions
 
-//NB: Use http://localhost:3000/api-docs/ to call & test the following functionalities using Swagger
+//NB: Use http://localhost:8080/api-docs/ to call & test the following functionalities using Swagger
 //NB: Use associated URL path for each route to call & test the following functionalities using Postman
 
 var express = require('express');
@@ -13,7 +13,7 @@ var myController = require('../Controllers/myController')
 
 
 //[APF 1.10 (Route)] Display All Event Details Table Records
-router.get('/', function (req,res) { // tested: working ,  http://localhost:8080/dbscompdex/
+router.get('/', function (req,res) {
     console.log('showing object')
     myController.findEventDetails(req,res)
     console.log('finished getting object data')
@@ -45,13 +45,13 @@ router.post('/createdetails', (req,res) => {
 })
 
 //[APF 1.70 (Route)] Update Event Details by ID
-router.put('/updatedetails/:ID', (req, res) => { //Note: Will not work through Postman without adding :id at end of route path
+router.put('/updatedetails/:ID', (req, res) => {
     console.log("sub form")
     myController.updateEventDetail(req,res)
 })
 
 //[APF 1.71 (Route)] Update Event Details by Competition Name
-router.put('/updatendetails/', (req, res) => { //Note: Will not work through Postman without adding :name at end of route path
+router.put('/updatendetails/', (req, res) => {
     myController.updateEventDetailName(req,res)
 })
 
@@ -159,7 +159,7 @@ router.get('/leaderinfo', function (req,res) {
 })
 
 //[APF 3.50 (Route)] Display Leader via ID
-router.post('/leaderinfo/:ID', function (req,res) {
+router.post('/leaderinfo/:id', function (req,res) {
     console.log('showing object')
     myController.findLeader(req,res)
     console.log('finished getting object data')

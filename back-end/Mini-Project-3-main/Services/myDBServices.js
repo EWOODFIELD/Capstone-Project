@@ -10,7 +10,7 @@
         //[APF 1.60 (Service)] Create Event Details -- Tested and working
         //[APF 1.70 (Service)] Update Event Details By ID -- Tested and working
 
-    //Event Placings
+    //Event Placings -- Not currently used
         //[APF 1.80] Show All Records from table "Event-Placings" -- Tested and working
         //[APF 1.90] Filter Event Placings Table by Deck Name -- Tested and working
         //[APF 2.00] Filter Event Placings Table by Player Name -- Tested and working
@@ -21,7 +21,7 @@
         //[APF 2.50 (Service)] Create Event Placing -- Tested and working
         //[APF 2.60 (Service)] Update Event Details By ID -- Tested and working
 
-    //Event Summaries
+    //Event Summaries -- Not currently used
         //[APF 2.70 (Service)] Show All Records from table "Event Summaries" -- Tested and working
         //[APF 2.80 (Service)] Filter Event Summaries table by Event -- Not working
         //[APF 2.90] Filter Event Summaries by Deck Name -- Not working
@@ -29,6 +29,12 @@
         //[APF 3.10 (Service)] Delete Event Summary by ID -- Tested and working
         //[APF 3.20 (Service)] Create Event Summary -- Tested and working
         //[APF 3.30 (Service)] Update Event Summary By ID -- Tested and working
+
+    //Leader Information
+        //[APF 3.40 (Service)] Show All Records from table "Leader Information" -- Tested and working
+        //[APF 3.50 (Service)] Select Leader Information by ID -- Tested and working
+        //[APF 3.60 (Service)] Filter Leader Information by Name -- Tested and working (note: Front end testable only)
+
 
 //Establishes connection between myDBServices.js file and index.js file
 const sql = require("../index")
@@ -138,7 +144,7 @@ let dbUpdateEventDetailById = async (req, res) => { //Tested and working
 }
 
 //[APF 1.71 (Service)] Update Event Details By Name
-let dbUpdateEventDetailByName = async (req, res) => {
+let dbUpdateEventDetailByName = async (req, res) => { //Tested and working
     console.log("test 1.71")
     let competition=req.params.name
     let newName=req.body.Competition
@@ -158,8 +164,6 @@ let dbUpdateEventDetailByName = async (req, res) => {
 }
 
 
-
-
 // EVENT PLACINGS BEGINS HERE
 
 
@@ -177,7 +181,7 @@ let dbGetEventPlacings = async (req,res) => { //Tested and Working
 
 //[APF 1.90] Filter Event Placings Table by Deck Name
 let dbGetEventPlacingByName = async (req,res) => { //Tested and working 
-    let deck=req.params.deck                       //Can I return the event names associated with the placing results?
+    let deck=req.params.deck                       
     return new Promise((resolve, reject) =>{
         let sqlQuery= `SELECT Placing FROM eventplacings WHERE Deck like "%${deck}%"`;
         sql.query(sqlQuery, (err,result, field) => {
@@ -192,7 +196,7 @@ let dbGetEventPlacingByName = async (req,res) => { //Tested and working
 
 //[APF 2.00] Filter Event Placings Table by Player Name
 let dbGetPlayerPlacingByName = async (req,res) => { //Tested and working
-    let name=req.params.name                        //Can I return the event names associated with the placing results?
+    let name=req.params.name                        
     return new Promise((resolve, reject) =>{
         let sqlQuery= `SELECT Placing FROM eventplacings WHERE Name like "%${name}%"`;
         sql.query(sqlQuery, (err,result, field) => {
@@ -206,7 +210,7 @@ let dbGetPlayerPlacingByName = async (req,res) => { //Tested and working
 }
 
 //[APF 2.10] Filter Event Placings Table by Deck Name and Event
-let dbGetPlayerPlacingByNameAndCompetition = async (req,res) => { //Not working
+let dbGetPlayerPlacingByNameAndCompetition = async (req,res) => {
     let deck=req.params.deck
     let competition=req.params.competition
     return new Promise((resolve, reject) =>{
@@ -222,7 +226,7 @@ let dbGetPlayerPlacingByNameAndCompetition = async (req,res) => { //Not working
 }
 
 //[APF 2.20] (Service) Filter Event Placings table by Event ID
-let dbGetEventPlacingById = async (req,res) => { //Not working
+let dbGetEventPlacingById = async (req,res) => {
     let placingID=req.params.ID
     console.log(req.params)
     return new Promise((resolve, reject) =>{
@@ -236,7 +240,7 @@ let dbGetEventPlacingById = async (req,res) => { //Not working
 }
 
 //[APF 2.30] (Service) Delete Event Placing by Player Name and Competition
-let dbDeleteEventPlacingbyNameAndEvent = async (req, res) =>{ //Not working
+let dbDeleteEventPlacingbyNameAndEvent = async (req, res) =>{
     let name=req.params.name
     let competition=req.params.competition
     return new Promise((resolve, reject) =>{
@@ -250,7 +254,7 @@ let dbDeleteEventPlacingbyNameAndEvent = async (req, res) =>{ //Not working
 }
 
 //[APF 2.40 (Service)] Delete Event Placing by ID
-let dbDeleteEventPlacingById = async (req, res) =>{ //Not working
+let dbDeleteEventPlacingById = async (req, res) =>{ //Tested and working
     let ID=req.params.ID
     return new Promise((resolve, reject) =>{
         let sqlQuery= `DELETE FROM eventplacings WHERE ID = ${ID}`;
@@ -298,6 +302,7 @@ let dbUpdateEventPlacingById = async (req, res) => { //Tested and working
 
 
 // EVENT SUMMARIES BEGINS HERE
+
 
 //[APF 2.70 (Service)] Show All Records from table "Event Summaries"
 let dbGetEventSummaries = async (req,res) => { //Tested and working
@@ -403,6 +408,9 @@ let dbUpdateEventSummaryById = async (req, res) => { //Tested and working
 }
 
 
+// LEADER INFORMATION BEGINS HERE
+
+
 //[APF 3.40 (Service)] Show All Records from table "Leader Information"
 let dbGetLeaders = async (req,res) => {
     return new Promise((resolve, reject) => {
@@ -415,7 +423,7 @@ let dbGetLeaders = async (req,res) => {
         console.log('testing leader fetch function')
 })}
 
-//[APF 3.40 (Service)] Show All Records from table "Leader Information"
+//[APF 3.50 (Service)] Select Leader Information by ID
 let dbGetLeader = async (req,res) => {
     let id = req.body.ID;
     return new Promise((resolve, reject) => {
@@ -428,7 +436,7 @@ let dbGetLeader = async (req,res) => {
         console.log('testing leader fetch function')
 })}
 
-//[APF 3.40 (Service)] Show All Records from table "Leader Information"
+//[APF 3.60 (Service)] Filter Leader Information by Name
 let dbSearchLeaderByName = async (req,res) => {
     let leaderName = req.body.name;
     return new Promise((resolve, reject) => {
@@ -452,6 +460,6 @@ module.exports = {
 //Event Summaries Exports    
     dbGetEventSummaries, dbGetEventSummaryByCompetition, dbGetEventSummariesByDeck, dbGetEventSummaryById,
     dbDeleteEventSummaryById, dbCreateEventSummary, dbUpdateEventSummaryById,
-
+//Leader Information Exports 
     dbGetLeaders, dbGetLeader, dbSearchLeaderByName
-    }
+}

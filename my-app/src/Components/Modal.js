@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { CardMedia } from '@mui/material';
 
 
 //[APB 2.40] Define Modal CSS Styling
@@ -43,7 +42,7 @@ export default function BasicModal({ card }) {
         
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {/* {card.Players} */} 
+            
             Name: 
             {card.Leader}<br></br>
             Total Event Tops: 
@@ -56,10 +55,7 @@ export default function BasicModal({ card }) {
              {card.CardSet}<br></br>
             Era: 
              {card.Era}<br></br>
-            {/* Effect Front: 
-            {card.CardDescriptionFront}<br></br>
-            Effect Back: 
-            {card.CardDescriptionBack}<br></br> */}
+            
           </Typography>
         </Box>
       </Modal>

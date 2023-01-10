@@ -14,7 +14,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import HomePage from './HomePage';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useContext, useState, useEffect } from 'react';
@@ -88,7 +87,11 @@ const validateLogin=()=> {
 //[APB 2.33] Definition of Login Form Structure, Behaviour, and Theme
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" className="Login-Background" style={{backgroundColor: "rgba(50%,50%,50%, 0.7)"}}>
+      <Container 
+        component="main" 
+        maxWidth="xs" 
+        className="Login-Background" 
+        style={{backgroundColor: "rgba(50%,50%,50%, 0.7)"}}>
         <CssBaseline />
         <Box
           sx={{
